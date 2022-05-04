@@ -70,6 +70,9 @@ RUN yum install -y --disableplugin=subscription-manager hostname procps \
 
 VOLUME ${NEXUS_DATA}
 
+RUN chgrp -R 0 ${SONATYPE_DIR} ${NEXUS_DATA} && \
+    chmod -R g=u ${SONATYPE_DIR} ${NEXUS_DATA}
+
 EXPOSE 8081
 USER nexus
 
